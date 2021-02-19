@@ -84,7 +84,7 @@ def get_prediction(image_path):
     return (age, gender)
 
 if __name__ == '__main__':
-    print('Hello world1', file=sys.stderr)
+    print('Hello world', file=sys.stderr)
     load_model()  # load model at the beginning once only
     app.run(host='0.0.0.0', port=80)
     
