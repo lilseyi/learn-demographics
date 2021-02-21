@@ -67,7 +67,6 @@ def upload_file():
 def get_prediction(image_path):
     # Works only for a single sample
     img = cv2.imread(image_path)
-    
     # the model takes specific inputs
     img = cv2.resize(img, (224, 224)) #img shape is (224, 224, 3) now
     img_blob = cv2.dnn.blobFromImage(img) # img_blob shape is (1, 3, 224, 224)
