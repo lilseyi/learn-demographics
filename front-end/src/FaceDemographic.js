@@ -6,24 +6,36 @@ export default class FaceDemographic extends React.Component {
     urls: '',
   }
 
-  handleChange = event => {
+  handleChange = async event => {
     this.setState({ urls: event.target.value });
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
-
+    console.log("test")/*
     const payload = {
-      urls: this.state.urls
+      urls: [this.state.urls]
     };
-
-    axios.post(`http://ec2-54-236-24-242.compute-1.amazonaws.com//predict`, { payload })
+    console.log(payload)
+    axios.post(`http://ec2-34-201-161-82.compute-1.amazonaws.com//predict`, payload)
       .then(res => {
         console.log("in then")
         console.log(res);
         console.log(res.data);
       })
+      */
+     const json = JSON.stringify({ urls: [this.state.urls] });
+      const res = await axios.post('http://ec2-34-201-161-82.compute-1.amazonaws.com/predict', json, {
+      headers: {
+        // Overwrite Axios's automatically set Content-Type
+        'Content-Type': 'application/json'
+       }
+      });
+      console.log(res)
+
   }
+  
+
 
   render() {
     return (
