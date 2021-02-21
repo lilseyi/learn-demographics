@@ -4,6 +4,7 @@ import axios from 'axios';
 export default class FaceDemographic extends React.Component {
   state = {
     urls: '',
+    results:'Please paste an image link into the box above'
   }
 
   handleChange = async event => {
@@ -31,7 +32,7 @@ export default class FaceDemographic extends React.Component {
         'Content-Type': 'application/json'
        }
       });
-      console.log(res)
+      this.setState({results:`Age: ${res.data.age}, Gender: ${res.data.gender}`})
 
   }
   
@@ -42,11 +43,12 @@ export default class FaceDemographic extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Person Name:
+            Image Url:
             <input type="text" name="url" onChange={this.handleChange} />
           </label>
           <button type="submit">Get Demographics</button>
         </form>
+        <p>{this.state.results}</p>
       </div>
     )
   }
